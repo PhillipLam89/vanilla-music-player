@@ -5,7 +5,7 @@
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   min-height: 100vh;
   background: #c9ced3;
   display: flex;
@@ -25,15 +25,16 @@ body {
 
 .img-container {
   height: 300px;
-  width: 300px;
-  position: relative;
-  top: -50px;
-  left: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
 }
 
 .img-container img {
-  height: 100%;
-  width: 100%;
+  transform: translateY(-50px);
+  height: 300px;
+  width: 300px;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 5px 30px 5px rgba(10,10,10,0.5);
@@ -50,6 +51,52 @@ h3 {
   text-align: center;
   font-weight: 400;
   margin: 5px 0 0;
+}
+/* Progress */
+.progress-container {
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem auto;
+  height: 10px;
+  width: 90%;
+}
+
+.progress {
+  background: #242323;
+  border-radius: 5px;
+  height: 100%;
+  /* change this to show progress */
+  width: 66%;
+  transition: width 0.1s linear;
+}
+
+.duration-wrapper {
+
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* Controls */
+.player-controls {
+
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  user-select: none;
+}
+
+.controls {
+  font-size: 30px;
+  color: goldenrod;
+  transform: scale(1);
+}
+.controls:hover {
+ filter: brightness(80%);
+}
+.controls:active {
+transform: scale(.85);
 }
 
 
