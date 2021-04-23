@@ -12,7 +12,10 @@ body {
   place-items: center;
   font-size: 12px;
 }
+span {
+  font-weight: bolder;
 
+}
 .player-container {
   height: 575px;
   width: 400px;
@@ -22,7 +25,6 @@ body {
   box-shadow: 0 15px 30px 5px rgba(10,10,10,0.3);
 
 }
-
 
 .img-container {
   height: 300px;
@@ -41,7 +43,7 @@ body {
   box-shadow: 0 5px 30px 5px rgba(10,10,10,0.5);
 }
 .author-container {
-    transform: translateY(-100px);
+    transform: translateY(-90px);
 
 }
 h2 {
@@ -65,24 +67,8 @@ h3 {
   background-color:#ddd;
   margin: 1rem 2em;
 }
-.volume-slider{
-   height:inherit;
-   width: 100%;
-   position:relative;
-   background-color:bisque;
-   border-right: 20px solid rgb(20, 189, 57);
-   border-radius: 10px;
 
-}
-.volume-slider::after {
-  content: 'Volume';
-  color: rgb(20, 189, 57);
-  font-size: 1rem;
 
-  display: block;
-  font-weight: bolder;
-  padding-top: 0.75rem;
-}
 /* Progress */
 .progress-container {
   background: #fff;
@@ -99,14 +85,14 @@ h3 {
   border-radius: 5px;
   height: 100%;
   width: 0%;
-  transition: width 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 .duration-wrapper {
-
+  transform: translateY(10px);
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+
 }
 
 /* Controls */
@@ -123,8 +109,6 @@ h3 {
   font-size: 30px;
   color: goldenrod;
   transform: scale(1);
-
-
 }
 .controls:hover {
  filter: brightness(80%);
@@ -133,12 +117,26 @@ h3 {
 transform: scale(.85);
 }
 
+/* Volume stuff*/
+#vol-control-div {
+  margin: 0 1rem;
+}
+#vol-control-div::after {
+  content: 'Volume';
+  color: rgb(23, 97, 235);
+  font-size: 1rem;
+  margin-left: 3px;
+  display: block;
+  font-weight: bolder;
 
-
+}
+#vol-control {
+  transform: translateY(.5turn);
+}
 /* Media Query: iPhone (Vertical) */
 @media screen and (max-width: 376px) {
   .player-container {
-    width: 90vw;
+    width: 80vw;
   }
   .img-container img {
     width: 80%;
@@ -158,5 +156,53 @@ transform: scale(.85);
   .player-controls {
     top: -10px;
     left: 100px;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .player-container {
+    transform: rotate(90deg);
+      max-height: 80vw;
+      width: 400px;
+  }
+  .img-container {
+    transform: rotate(-90deg) translateY(-50px) translateX(-75px)
+  }
+  .img-container img {
+      height: 250px;
+      transform: translateX(-30px) translateY(-70px) scale(.85)
+  }
+ .progress-container  {
+    transform: rotate(270deg) translateX(220px) translateY(125px)
+
+  }
+  .player-controls {
+    transform: rotate(270deg) translateY(175px) translateX(265px)
+
+  }
+  #vol-control-div {
+  transform: rotate(270deg) translateY(85px) translateX(165px)
+  }
+
+  h2 {
+    transform: rotate(270deg) translateX(-5px)
+
+  }
+  h3 {
+    transform: rotate(270deg) translateY(85px) translateX(-15px)
+  }
+  #artist {
+    transform: translateX(30px) translateY(-120px) rotate(270deg)
+  }
+
+  #rank {
+    transform: rotate(270deg) translateY(60px) translateX(140px);
+  }
+  #title {
+    transform: translateY(-80px) rotate(270deg)
+  }
+
+  .author-container {
+    transform: translateX(-67%) translateY(265px);
   }
 }
