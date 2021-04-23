@@ -63,19 +63,6 @@ function loadSong(song) {
   music.src = `music/${song.name}.mp3`
   image.src = `img/${song.name}.jpg`
 
-  // const songDurationInSeconds = document.querySelector('audio').duration
-  // console.log('duration', songDurationInSeconds)
-  //       //minutes calculation
-  // const durationMinutes = Math.floor(songDurationInSeconds / 60)
-  //     //seconds calculation
-
-  // let durationSeconds = Math.floor(songDurationInSeconds % 60)
-  // if (durationSeconds < 10) durationSeconds = `0${durationSeconds}`
-
-  // if (durationSeconds) {
-  //   durationElement.textContent = `${durationMinutes}:${durationSeconds}`
-  // }
-
   songs.forEach((song, index) => {
     if (song.displayName === title.textContent) {
       currentSongIndex = index
@@ -92,7 +79,7 @@ nextButton.addEventListener('click', () => {
        currentSongIndex = 0
    }
    loadSong(songs[currentSongIndex])
-   music.play()
+   isMusicPlaying && music.play()
 
 })
 // previous song button
@@ -102,7 +89,7 @@ prevButton.addEventListener('click', () => {
        currentSongIndex = songs.length - 1
    }
    loadSong(songs[currentSongIndex])
-   music.play()
+   isMusicPlaying && music.play()
 })
 
 function updateProgressBar(e) {
@@ -134,4 +121,15 @@ function updateProgressBar(e) {
    }
 }
 
-music.addEventListener('timeupdate', updateProgressBar)
+function setProgressBar(e) {
+  const totalWidth = this.clientWidth
+  const userClickedWidth = e.offsetX
+  // since this is an event, 'this' will refer to the element that received the event
+  const {duration} = music // total length of current song
+
+  music.currentTime = userClickedWidth/totalWidth * duration
+
+
+}
+music.addEventListener('timeupdate', updateProgressBar) //time update event runs 4x every second, which can be used to display our current song time(s)
+progressContainer.addEventListener('click', setProgressBar)
