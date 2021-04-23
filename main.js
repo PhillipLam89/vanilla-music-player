@@ -8,20 +8,34 @@ const durationElement = document.getElementById('duration')
 const image = document.querySelector('img')
 const title = document.getElementById('title')
 const artist = document.getElementById('artist')
+const rank = document.getElementById('rank')
 
 // collection of all songs in library
 const songs = [
-   { name: 'jacinto-1',
-     displayName: 'Electric Chill machine',
-     artist: 'Jacinto'
+   { name: 'taylorSwift',
+     displayName: 'Love Story',
+     artist: 'Taylor Swift',
+     rank: 1
     },
-   { name: 'jacinto-2',
-     displayName: '7 Nation Army Remix',
-     artist: 'Jacinto'
+   { name: 'taylorSwift2',
+     displayName: 'Blank Space',
+     artist: 'Taylor Swift',
+     rank: 2
     },
-   { name: 'jacinto-3',
-     displayName: 'Murder all humans',
-     artist: 'Jacinto'
+   { name: 'saweetie',
+     displayName: 'Best Friend',
+     artist: 'Saweetie ft. Doja Cat',
+     rank: 3
+    },
+   { name: 'BSB',
+     displayName: 'I Want It That Way',
+     artist: 'Legendary Backstreet Boys',
+     rank: 4
+    },
+   { name: 'oneRepublic',
+     displayName: 'Counting Stars',
+     artist: 'One Republic',
+     rank: 5
     }
 ]
 //onload, select first song
@@ -60,6 +74,7 @@ playButton.addEventListener('click', () => isMusicPlaying ? pauseSong() : playSo
 function loadSong(song) {
   title.textContent = song.displayName
   artist.textContent = song.artist
+  rank.textContent = '#' + ' ' + song.rank.toString()
   music.src = `music/${song.name}.mp3`
   image.src = `img/${song.name}.jpg`
 
@@ -79,6 +94,8 @@ nextButton.addEventListener('click', () => {
        currentSongIndex = 0
    }
    loadSong(songs[currentSongIndex])
+
+   //when user clicks next button, next song will play automatically IF current song is not paused
    isMusicPlaying && music.play()
 
 })
