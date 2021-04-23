@@ -17,7 +17,7 @@ body {
 .player-container {
   height: 500px;
   width: 400px;
-  background: lightblue;
+  background: lightcyan;
   border-radius: 20px;
   box-shadow: 0 15px 30px 5px rgba(10,10,10,0.3);
 }
@@ -39,7 +39,10 @@ body {
   border-radius: 20px;
   box-shadow: 0 5px 30px 5px rgba(10,10,10,0.5);
 }
+.author-container {
+    transform: translateY(-85px);
 
+}
 h2 {
   font-size: 25px;
   text-align: center;
