@@ -41,7 +41,7 @@ body {
   box-shadow: 0 5px 30px 5px rgba(10,10,10,0.5);
 }
 .author-container {
-    transform: translateY(-80px);
+    transform: translateY(-100px);
 
 }
 h2 {
@@ -55,6 +55,33 @@ h3 {
   text-align: center;
   font-weight: 400;
   margin: 5px 0 0;
+}
+
+.volume-slider-con{
+  height:10px;
+
+  width: 50%;
+  position:relative;
+  background-color:#ddd;
+  margin: 1rem 2em;
+}
+.volume-slider{
+   height:inherit;
+   width: 100%;
+   position:relative;
+   background-color:bisque;
+   border-right: 20px solid rgb(20, 189, 57);
+   border-radius: 10px;
+
+}
+.volume-slider::after {
+  content: 'Volume';
+  color: rgb(20, 189, 57);
+  font-size: 1rem;
+
+  display: block;
+  font-weight: bolder;
+  padding-top: 0.75rem;
 }
 /* Progress */
 .progress-container {
