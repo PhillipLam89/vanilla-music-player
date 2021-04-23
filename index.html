@@ -20,10 +20,10 @@
     <h3 id="rank">#</h3>
 
     <audio src="" ></audio>
-    <div class="volume-slider-con">
-    <div class="volume-slider"></div>
+    <div id="vol-control-div">
+      <input id="vol-control" type="range" min="0" max="100" step="1"  oninput="setVolume(this.value)" onchange="setVolume(this.value)">
     </div>
-    <!-- Progress  Bar-->
+      <!-- Progress  Bar-->
     <div class="progress-container" id="progress-container">
       <div class="progress" id="progress"></div>
       <div class="duration-wrapper">

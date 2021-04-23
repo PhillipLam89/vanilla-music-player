@@ -147,59 +147,17 @@ function setProgressBar(e) {
   const userClickedWidth = e.offsetX
   // since this is an event, 'this' will refer to the element that received the event
   const {duration} = music // total length of current song
-
   music.currentTime = userClickedWidth/totalWidth * duration
-
-
 }
+
+
+
 music.addEventListener('timeupdate', updateProgressBar) //time update event runs 4x every second, which can be used to display our current song time(s)
 progressContainer.addEventListener('click', setProgressBar)
 
 
-
-
-
    // volume controls
-
-
-const e = document.querySelector('.volume-slider-con');
-const eInner = document.querySelector('.volume-slider');
-const audio = document.querySelector('audio');
-let drag = false;
-e.addEventListener('mousedown',function(ev){
-   drag = true;
-   updateBar(ev.clientX);
-});
-document.addEventListener('mousemove',function(ev){
-   if(drag){
-      updateBar(ev.clientX);
+   // onchange and oninput event listeners added directly via html attributes which will call the setVolume function below
+   function setVolume(val) {
+      music.volume = val  * .01 //volume values must be [0,1] when we're using the built in <audio> element.
    }
-});
-document.addEventListener('mouseup',function(ev){
- drag = false;
-});
-const updateBar = function (x, vol) {
-   const volume = e;
-        var percentage;
-        //if only volume have specificed
-        //then direct update volume
-        if (vol) {
-            percentage = vol * 100;
-        } else {
-            var position = x - volume.offsetLeft;
-            percentage = 100 * position / volume.clientWidth;
-        }
-
-          //written this way purely for easy readability and future review
-
-        if (percentage > 100) {
-            percentage = 100;
-        }
-        if (percentage < 0) {
-            percentage = 0;
-        }
-
-        //update volume bar and video volume
-        eInner.style.width = percentage +'%';
-        audio.volume = percentage / 100;
-};
