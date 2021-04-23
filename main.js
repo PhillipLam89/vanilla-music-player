@@ -8,25 +8,43 @@ const durationElement = document.getElementById('duration')
 const image = document.querySelector('img')
 const title = document.getElementById('title')
 const artist = document.getElementById('artist')
+const rank = document.getElementById('rank')
 
 // collection of all songs in library
 const songs = [
-   { name: 'jacinto-1',
-     displayName: 'Electric Chill machine',
-     artist: 'Jacinto'
+   { name: 'taylorSwift',
+     displayName: 'Love Story',
+     artist: 'Taylor Swift',
+     rank: 1
     },
-   { name: 'jacinto-2',
-     displayName: '7 Nation Army Remix',
-     artist: 'Jacinto'
+   { name: 'taylorSwift2',
+     displayName: 'Blank Space',
+     artist: 'Taylor Swift',
+     rank: 2
     },
-   { name: 'jacinto-3',
-     displayName: 'Murder all humans',
-     artist: 'Jacinto'
+   { name: 'saweetie',
+     displayName: 'Best Friend',
+     artist: 'Saweetie ft. Doja Cat',
+     rank: 3
+    },
+   { name: 'BSB',
+     displayName: 'I Want It That Way',
+     artist: 'Legendary Backstreet Boys',
+     rank: 4
+    },
+   { name: 'oneRepublic',
+     displayName: 'Counting Stars',
+     artist: 'One Republic',
+     rank: 5
     }
 ]
-//onload, select first song
-let currentSongIndex = 0
-loadSong(songs[0])
+//onload, select random first song
+let currentSongIndex = Math.floor(Math.random() * (songs.length-1 + 1));
+
+
+loadSong(songs[currentSongIndex])
+
+
 
 
 //button selectors
@@ -60,6 +78,7 @@ playButton.addEventListener('click', () => isMusicPlaying ? pauseSong() : playSo
 function loadSong(song) {
   title.textContent = song.displayName
   artist.textContent = song.artist
+  rank.textContent = '#' + ' ' + song.rank.toString()
   music.src = `music/${song.name}.mp3`
   image.src = `img/${song.name}.jpg`
 
@@ -79,6 +98,8 @@ nextButton.addEventListener('click', () => {
        currentSongIndex = 0
    }
    loadSong(songs[currentSongIndex])
+
+   //when user clicks next button, next song will play automatically IF current song is not paused
    isMusicPlaying && music.play()
 
 })
@@ -133,3 +154,52 @@ function setProgressBar(e) {
 }
 music.addEventListener('timeupdate', updateProgressBar) //time update event runs 4x every second, which can be used to display our current song time(s)
 progressContainer.addEventListener('click', setProgressBar)
+
+
+
+
+
+   // volume controls
+
+
+const e = document.querySelector('.volume-slider-con');
+const eInner = document.querySelector('.volume-slider');
+const audio = document.querySelector('audio');
+let drag = false;
+e.addEventListener('mousedown',function(ev){
+   drag = true;
+   updateBar(ev.clientX);
+});
+document.addEventListener('mousemove',function(ev){
+   if(drag){
+      updateBar(ev.clientX);
+   }
+});
+document.addEventListener('mouseup',function(ev){
+ drag = false;
+});
+const updateBar = function (x, vol) {
+   const volume = e;
+        var percentage;
+        //if only volume have specificed
+        //then direct update volume
+        if (vol) {
+            percentage = vol * 100;
+        } else {
+            var position = x - volume.offsetLeft;
+            percentage = 100 * position / volume.clientWidth;
+        }
+
+          //written this way purely for easy readability and future review
+
+        if (percentage > 100) {
+            percentage = 100;
+        }
+        if (percentage < 0) {
+            percentage = 0;
+        }
+
+        //update volume bar and video volume
+        eInner.style.width = percentage +'%';
+        audio.volume = percentage / 100;
+};

@@ -14,11 +14,13 @@ body {
 }
 
 .player-container {
-  height: 500px;
+  height: 575px;
   width: 400px;
+  padding-bottom: 100px;
   background: lightcyan;
   border-radius: 20px;
   box-shadow: 0 15px 30px 5px rgba(10,10,10,0.3);
+
 }
 
 
@@ -39,7 +41,7 @@ body {
   box-shadow: 0 5px 30px 5px rgba(10,10,10,0.5);
 }
 .author-container {
-    transform: translateY(-80px);
+    transform: translateY(-100px);
 
 }
 h2 {
@@ -54,6 +56,33 @@ h3 {
   font-weight: 400;
   margin: 5px 0 0;
 }
+
+.volume-slider-con{
+  height:10px;
+
+  width: 50%;
+  position:relative;
+  background-color:#ddd;
+  margin: 1rem 2em;
+}
+.volume-slider{
+   height:inherit;
+   width: 100%;
+   position:relative;
+   background-color:bisque;
+   border-right: 20px solid rgb(20, 189, 57);
+   border-radius: 10px;
+
+}
+.volume-slider::after {
+  content: 'Volume';
+  color: rgb(20, 189, 57);
+  font-size: 1rem;
+
+  display: block;
+  font-weight: bolder;
+  padding-top: 0.75rem;
+}
 /* Progress */
 .progress-container {
   background: #fff;
@@ -62,13 +91,13 @@ h3 {
   margin: 2rem auto;
   height: 10px;
   width: 90%;
+
 }
 
 .progress {
   background: #242323;
   border-radius: 5px;
   height: 100%;
-  /* change this to show progress */
   width: 0%;
   transition: width 0.1s linear;
 }
@@ -87,12 +116,15 @@ h3 {
   justify-content: space-around;
   cursor: pointer;
   user-select: none;
+
 }
 
 .controls {
   font-size: 30px;
   color: goldenrod;
   transform: scale(1);
+
+
 }
 .controls:hover {
  filter: brightness(80%);
@@ -106,9 +138,11 @@ transform: scale(.85);
 /* Media Query: iPhone (Vertical) */
 @media screen and (max-width: 376px) {
   .player-container {
-    width: 95vw;
+    width: 90vw;
   }
-
+  .img-container img {
+    width: 80%;
+  }
   .img-container {
     left: 29px;
   }
